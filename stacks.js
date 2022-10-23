@@ -15,8 +15,31 @@ class Stack {
     this.top = newNode;
     this.height = 1;
   }
+  push(value) {
+    const newNode = new Node(value);
+    if (this.height === 0) {
+      this.top = newNode;
+    } else {
+      newNode.next = this.top;
+      this.top = newNode;
+    }
+    this.height++;
+    return this;
+  }
+  pop() {
+    if (this.height === 0) return undefined;
+    let temp = this.top;
+    this.top = this.top.next;
+    temp.next = null;
+    this.height--;
+    return temp;
+  }
 }
 
-let myStack = new Stack(1);
+let myStack = new Stack(7);
+myStack.push(23);
+myStack.push(3);
+myStack.push(11);
+console.log(myStack.pop());
 
 console.log(myStack);
