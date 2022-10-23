@@ -95,22 +95,42 @@ class LinkedList {
     this.length++;
     return true;
   }
+  remove(index) {
+    if (index < 0 || index >= this.length) return undefined;
+    if (index === 0) return this.shift();
+    if (index === this.length - 1) return this.pop();
+    let before = this.get(index - 1);
+    let temp = before.next;
+    before.next = temp.next;
+    temp.next = null;
+    this.length--;
+    return temp;
+  }
+  reverse() {
+    // create a variable to loop thru list
+    let temp = this.head;
+    // switch head and tail to start reversing
+    this.head = this.tail;
+    // set tail to temp which is head
+    this.tail = temp;
+    // create a next variable
+    let next = temp.next;
+    // create a previous node variable
+    let prev = null;
+    for (let i = 0; i < this.length; i++) {
+      next = temp.next;
+      temp.next = prev = next;
+      prev = temp.prev;
+      temp = next;
+    }
+    return this;
+  }
 }
 
-let myLinkedList = new LinkedList(7);
-myLinkedList.push(4);
-myLinkedList.pop();
-myLinkedList.pop();
-myLinkedList.push(4);
-myLinkedList.push(10);
-myLinkedList.push(14);
-myLinkedList.push(99);
-myLinkedList.unshift(69);
-myLinkedList.shift();
-console.log(myLinkedList.get(1), 'get method');
-myLinkedList.set(1, 88);
-console.log(myLinkedList.set(3, 89));
-myLinkedList.insert(1, 1);
-myLinkedList.insert(1, 62);
+let myLinkedList = new LinkedList(1);
+
+myLinkedList.push(2);
+myLinkedList.push(3);
+myLinkedList.reverse();
 
 console.log(myLinkedList);
