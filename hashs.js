@@ -9,8 +9,18 @@
 // linear probing - if multiple key value pairs are mapped to the same memory address it checks for the next available slot and maps it to that location (open addressing)
 // it is more optimal to have a more randomized distribution of items you add to the hash table if you have a prime number of items
 
-class hashTable {
+class HashTable {
   constructor(size = 7) {
     this.dataMap = new Array(size);
   }
+  _hash(key) {
+    let hash = 0;
+    for (let i = 0; i < key.length; i++) {
+      hash = (hash + key.charCodeAt(i) * 23) % this.dataMap.length;
+    }
+    return hash;
+  }
 }
+
+let myHashTable = new HashTable();
+console.log(myHashTable);
