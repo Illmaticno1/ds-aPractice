@@ -55,7 +55,19 @@ class LinkedList {
     this.length++;
     return this;
   }
-  //insert(index, value)
+  shift(value) {
+    if (!this.head) {
+      return undefined;
+    }
+    let temp = this.head;
+    this.head = this.head.next;
+    temp.next = null;
+    this.length--;
+    if (this.length === 0) {
+      this.tail = null;
+    }
+    return temp;
+  }
 }
 
 let myLinkedList = new LinkedList(7);
@@ -67,5 +79,6 @@ myLinkedList.push(10);
 myLinkedList.push(14);
 myLinkedList.push(99);
 myLinkedList.unshift(69);
+myLinkedList.shift();
 
 console.log(myLinkedList);
