@@ -263,12 +263,19 @@ class DoublyLinkedList {
     }
     return temp;
   }
+  set(index, value) {
+    let temp = this.get(index);
+    if (temp) {
+      temp.value = value;
+      return true;
+    }
+    return false;
+  }
 }
 
 let myDoublyLinkedList = new DoublyLinkedList(0);
 myDoublyLinkedList.push(1);
 myDoublyLinkedList.push(2);
-myDoublyLinkedList.push(3);
-console.log(myDoublyLinkedList.get(2));
+console.log(myDoublyLinkedList.set(10, 99));
 
-// console.log(myDoublyLinkedList);
+console.log(myDoublyLinkedList);
