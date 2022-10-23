@@ -23,9 +23,9 @@ class LinkedList {
       }
       this.length++
       return this
-    }
-    unshift(value)
-    insert(index, value)
+   }
+    //unshift(value)
+    //insert(index, value)
 }
 
 let myLinkedList = new  LinkedList(4)
