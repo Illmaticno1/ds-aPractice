@@ -271,11 +271,24 @@ class DoublyLinkedList {
     }
     return false;
   }
+  insert(index, value) {
+    if (index === 0) return this.unshift(value);
+    if (index === this.length) return this.push(value);
+    if (index < 0 || index > this.length) return false;
+    const newNode = new Node1(value);
+    const before = this.get(index - 1);
+    const after = before.next;
+    before.next = newNode;
+    newNode.prev = before;
+    newNode.next = after;
+    after.prev = newNode;
+    this.length++;
+    return true;
+  }
 }
 
-let myDoublyLinkedList = new DoublyLinkedList(0);
-myDoublyLinkedList.push(1);
-myDoublyLinkedList.push(2);
-console.log(myDoublyLinkedList.set(10, 99));
+let myDoublyLinkedList = new DoublyLinkedList(1);
+myDoublyLinkedList.push(3);
+console.log(myDoublyLinkedList.insert(1, 2));
 
 console.log(myDoublyLinkedList);
