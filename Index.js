@@ -1,58 +1,93 @@
+//create a node class for each item in linked lists
 class Node {
   constructor(value) {
+    // this.value sets the value for each node
     this.value = value;
+    // this.next sets the next value to null given there is no next value unless added
     this.next = null;
   }
 }
 
+// create the link list class
 class LinkedList {
   constructor(value) {
+    // instantiate a new node and pass in the value
     const newNode = new Node(value);
+    // set head to the newNode value
     this.head = newNode;
+    // set tail to the same reference as the head
     this.tail = this.head;
+    // increment the lenght of the list
     this.length = 1;
   }
+  // create a push method
   push(value) {
+    // instantiate a node
     const newNode = new Node(value);
+    // check to see if head exists
     if (!this.head) {
+      // when head doesnt exist set it to the newly created node
       this.head = newNode;
+      // when only a head exist it is also the tail so set it to the newNode
       this.tail = newNode;
     } else {
+      // when a head exists look for the tail and set the new nodes value to its next
       this.tail.next = newNode;
+      // reset the tail to the new node
       this.tail = newNode;
     }
+    // increment the length of the list
     this.length++;
     return this;
   }
+  // create a pop method
   pop() {
+    // if the head doesnt exist return undefined given there is nothing at the end of the list to remove
     if (!this.head) {
       return undefined;
     }
+    // set a temp variable to the head we have to start at the beginning of the list to get to the end
     let temp = this.head;
+    // set another variable to keep track of the previous value
     let pre = this.head;
+    // loop thru checking to see if there is a next value
     while (temp.next) {
+      // when the is a next value set the pre to this variable
       pre = temp;
+      // then set the temp variable to the next in line
       temp = temp.next;
     }
+    // after looping to get to the node at the end set the tail to the previous value
     this.tail = pre;
+    // set the next to null effectively removing the last item in the list
     this.tail.next = null;
+    // decrement the length of the list
     this.length--;
+    // when or if the list is empty set head and tail to null
     if (this.length === 0) {
       this.head = null;
       this.tail = null;
     }
+    //return the temp variable
     return temp;
   }
+  // create a variable to add to the beginning of linked list (head)
   unshift(value) {
+    // create an instance of node and save it to a variable
     const newNode = new Node(value);
+    // if the head doesnt exist set the head and tail to the new node variable
     if (!this.head) {
       this.head = newNode;
       this.tail = newNode;
     } else {
+      // when a head does exist set the new nodes next to the head
       newNode.next = this.head;
+      // reset head to the new node
       this.head = newNode;
     }
+    // increment the lists length
     this.length++;
+    // return the whole linked list
     return this;
   }
   shift(value) {
