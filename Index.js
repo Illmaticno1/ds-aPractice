@@ -164,8 +164,93 @@ class LinkedList {
 
 let myLinkedList = new LinkedList(1);
 
-myLinkedList.push(2);
-myLinkedList.push(3);
-myLinkedList.reverse();
+// myLinkedList.push(2);
+// myLinkedList.push(3);
+// myLinkedList.reverse();
 
-console.log(myLinkedList);
+// console.log(myLinkedList);
+
+class Node1 {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+    this.prev = null;
+  }
+}
+
+class DoublyLinkedList {
+  constructor(value) {
+    const newNode = new Node1(value);
+    this.head = newNode;
+    this.tail = this.head;
+    this.length = 1;
+  }
+  push(value) {
+    // instantiate a node
+    const newNode = new Node1(value);
+    // check to see if head exists
+    if (!this.head) {
+      // when head doesnt exist set it to the newly created node
+      this.head = newNode;
+      // when only a head exist it is also the tail so set it to the newNode
+      this.tail = newNode;
+    } else {
+      // when a head exists look for the tail and set the new nodes value to its next
+      this.tail.next = newNode;
+      // connect the new nodes prev to the previous tail
+      newNode.prev = this.tail;
+      // reset the tail to the new node
+      this.tail = newNode;
+    }
+    // increment the length of the list
+    this.length++;
+    return this;
+  }
+  // create a pop method
+  pop() {
+    if (this.length === 0) return undefined;
+    let temp = this.tail;
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.tail = this.tail.prev;
+      this.tail.next = null;
+      temp.prev = null;
+    }
+    this.length--;
+    return temp;
+  }
+  unshift(value) {
+    const newNode = new Node1(value);
+    if (this.length === 0) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      newNode.next = this.head;
+      this.head.prev = newNode;
+      this.head = newNode;
+    }
+    this.length++;
+    return this;
+  }
+  shift() {
+    if (this.length === 0) return undefined;
+    let temp = this.head;
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.head = this.head.next;
+      this.head.prev = null;
+      temp.next = null;
+    }
+    this.length--;
+    return temp;
+  }
+}
+
+let myDoublyLinkedList = new DoublyLinkedList(2);
+myDoublyLinkedList.push(1);
+
+console.log(myDoublyLinkedList);
