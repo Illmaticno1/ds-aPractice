@@ -39,14 +39,26 @@ class HashTable {
     }
     return undefined;
   }
+  keys() {
+    let allKeys = [];
+    for (let i = 0; i < this.dataMap.length; i++) {
+      if (this.dataMap[i]) {
+        for (let j = 0; j < this.dataMap[i].length; j++) {
+          allKeys.push(this.dataMap[i][j][0]);
+        }
+      }
+    }
+    return allKeys;
+  }
 }
 
 let myHashTable = new HashTable();
 // myHashTable.set('lumber', 70);
 myHashTable.set('washers', 50);
 myHashTable.set('bolts', 1400);
-console.log(myHashTable.get('bolts'));
-console.log(myHashTable.get('washers'));
-console.log(myHashTable.get('lumber'));
+console.log(myHashTable.keys());
+// console.log(myHashTable.get('bolts'));
+// console.log(myHashTable.get('washers'));
+// console.log(myHashTable.get('lumber'));
 
-console.log(myHashTable);
+// console.log(myHashTable);
