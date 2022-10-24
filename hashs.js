@@ -8,6 +8,9 @@
 // separate chaining - adding each item mapped to a single memory address to an array or to a linked list
 // linear probing - if multiple key value pairs are mapped to the same memory address it checks for the next available slot and maps it to that location (open addressing)
 // it is more optimal to have a more randomized distribution of items you add to the hash table if you have a prime number of items
+// hash table Big O =
+// hashing itself is O(1)
+// get is O(1) unless there was a collision then it is O(n) because it has to loop thru the linked list or array
 
 class HashTable {
   constructor(size = 7) {
@@ -56,9 +59,10 @@ let myHashTable = new HashTable();
 // myHashTable.set('lumber', 70);
 myHashTable.set('washers', 50);
 myHashTable.set('bolts', 1400);
-console.log(myHashTable.keys());
+
+// console.log(myHashTable.keys());
 // console.log(myHashTable.get('bolts'));
 // console.log(myHashTable.get('washers'));
 // console.log(myHashTable.get('lumber'));
 
-// console.log(myHashTable);
+console.log(myHashTable);
